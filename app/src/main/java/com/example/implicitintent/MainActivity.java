@@ -1,40 +1,15 @@
 package com.example.implicitintent;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ShareCompat;
-
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.ChangedPackages;
-import android.content.pm.FeatureInfo;
-import android.content.pm.InstrumentationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageInstaller;
-import android.content.pm.PackageManager;
-import android.content.pm.PermissionGroupInfo;
-import android.content.pm.PermissionInfo;
-import android.content.pm.ProviderInfo;
-import android.content.pm.ResolveInfo;
-import android.content.pm.ServiceInfo;
-import android.content.pm.SharedLibraryInfo;
-import android.content.pm.VersionedPackage;
-import android.content.res.Resources;
-import android.content.res.XmlResourceParser;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.UserHandle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -87,4 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 .startChooser();
     }
 
+    public void takePicture(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 }
